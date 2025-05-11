@@ -1,0 +1,344 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 400px;
+  min-height: 300px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+}
+
+.container {
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.btn.primary {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn.primary:hover {
+  background-color: #45a049;
+}
+
+.btn.secondary {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn.secondary:hover {
+  background-color: #da190b;
+}
+
+.btn.small {
+  padding: 4px 8px;
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.btn.small:hover {
+  background-color: #1976D2;
+}
+
+.btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.text-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.text-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.text-header h2 {
+  font-size: 16px;
+  color: #333;
+}
+
+.text-content {
+  padding: 20px;
+  max-height: 500px;
+  overflow-y: auto;
+  transition: max-height 0.3s ease;
+  scrollbar-width: thin;
+  scrollbar-color: #4CAF50 #f8f9fa;
+  flex: 1;
+}
+
+.text-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.text-content::-webkit-scrollbar-track {
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.text-content::-webkit-scrollbar-thumb {
+  background-color: #4CAF50;
+  border-radius: 4px;
+}
+
+.text-content::-webkit-scrollbar-thumb:hover {
+  background-color: #45a049;
+}
+
+.text-content.collapsed {
+  max-height: 0;
+  padding: 0 16px;
+}
+
+.placeholder {
+  color: #6c757d;
+  font-style: italic;
+}
+
+#extractedText {
+  line-height: 1.6;
+  color: #333;
+  font-size: 14px;
+  padding: 20px;
+}
+
+.text-line {
+  margin: 8px 0;
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border-left: 3px solid #4CAF50;
+  transition: all 0.2s ease;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.copy-btn {
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #666;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  opacity: 0;
+  transform: translateX(10px);
+}
+
+.text-line:hover .copy-btn {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.copy-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #4CAF50;
+}
+
+.copy-btn.copied {
+  color: #4CAF50;
+  background-color: rgba(76, 175, 80, 0.1);
+}
+
+/* 章节样式 */
+.text-line:has([章节]) {
+  background-color: #e3f2fd;
+  border-left-color: #2196F3;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 16px 0;
+}
+
+/* 标题样式 */
+.text-line:has([标题]) {
+  background-color: #e8f5e9;
+  border-left-color: #4CAF50;
+  font-weight: 600;
+  margin: 12px 0;
+}
+
+/* 列表项样式 */
+.text-line:has([列表项]) {
+  background-color: #fff3e0;
+  border-left-color: #FF9800;
+  padding-left: 24px;
+  position: relative;
+}
+
+.text-line:has([列表项])::before {
+  content: "•";
+  color: #FF9800;
+  position: absolute;
+  left: 8px;
+  font-size: 18px;
+}
+
+/* 引用样式 */
+.text-line:has([引用]) {
+  background-color: #f1f8e9;
+  border-left-color: #8bc34a;
+  font-style: italic;
+  color: #555;
+}
+
+/* 正文样式 */
+.text-line:has([正文]) {
+  background-color: #f8f9fa;
+  border-left-color: #4CAF50;
+}
+
+.text-line:hover {
+  background-color: #e9ecef;
+  transform: translateX(4px);
+}
+
+/* 标题样式 */
+.text-line:first-letter {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* 列表项样式 */
+.text-line:first-letter {
+  color: #4CAF50;
+}
+
+/* 引用样式 */
+.text-line:first-letter {
+  color: #8bc34a;
+  font-style: italic;
+}
+
+.text-paragraph {
+  margin-bottom: 16px;
+  padding: 12px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  border-left: 4px solid #4CAF50;
+  transition: all 0.2s ease;
+}
+
+.text-paragraph:hover {
+  background-color: #e9ecef;
+  transform: translateX(4px);
+}
+
+.text-heading {
+  margin: 24px 0 16px;
+  padding: 8px 12px;
+  color: #2c3e50;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 2px solid #4CAF50;
+}
+
+.text-list-item {
+  margin: 8px 0;
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  list-style-type: none;
+  position: relative;
+  padding-left: 24px;
+}
+
+.text-list-item::before {
+  content: "•";
+  color: #4CAF50;
+  position: absolute;
+  left: 8px;
+  font-size: 18px;
+}
+
+.text-quote {
+  margin: 16px 0;
+  padding: 16px;
+  background-color: #f1f8e9;
+  border-left: 4px solid #8bc34a;
+  font-style: italic;
+  color: #555;
+}
+
+/* 打字机效果动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.text-line {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.text-line.single-line {
+  background-color: #f8f9fa;
+  border-left: 3px solid #4CAF50;
+  padding: 12px;
+  margin: 8px 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.6;
+}
+
+.text-line.single-line .text-content {
+  display: block;
+  width: 100%;
+}
+
+.text-line.single-line .copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  opacity: 1;
+  transform: none;
+}
+
+/* 确保复制按钮在单行模式下始终可见 */
+.text-line.single-line:hover .copy-btn {
+  opacity: 1;
+  transform: none;
+} 

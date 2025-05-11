@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Web Text Extractor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>网页文字提取器</h1>
+    <div class="controls">
+      <button id="startBtn" class="btn primary">开始提取</button>
+      <button id="stopBtn" class="btn secondary" disabled>停止提取</button>
+    </div>
+    <div class="content">
+      <div class="text-container">
+        <div class="text-header">
+          <h2>提取的文字</h2>
+          <button id="toggleBtn" class="btn small">折叠</button>
+        </div>
+        <div id="extractedText" class="text-content expanded">
+          <p class="placeholder">点击"开始提取"按钮开始提取文字...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html> 
